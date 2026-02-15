@@ -1,0 +1,167 @@
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 12px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.35s ease;
+}
+
+.navbarHidden {
+  transform: translateY(-100%);
+}
+
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logoImg {
+  object-fit: contain;
+  height: 110px;
+  width: auto;
+}
+
+/* ── Desktop nav links ── */
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.navLinks a {
+  font-family: var(--font-primary), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  transition: color 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.navLinks a:hover {
+  color: var(--color-blue);
+}
+
+/* ── Hamburger button ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.hamburger:hover {
+  background: rgba(0, 114, 185, 0.08);
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-dark);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animate hamburger → X */
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Overlay ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 999;
+}
+
+/* ── Mobile / Tablet (≤1024px) ── */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .logoImg {
+    height: 72px;
+  }
+
+  .navLinks {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0 16px;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+  }
+
+  .navLinksOpen {
+    display: flex;
+    animation: slideDown 0.22s ease;
+  }
+
+  .navLinks li {
+    width: 100%;
+  }
+
+  .navLinks a {
+    display: block;
+    padding: 14px 28px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .navLinks li:last-child a {
+    border-bottom: none;
+  }
+
+  .navLinks a:hover {
+    background: rgba(0, 114, 185, 0.06);
+    color: var(--color-blue);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

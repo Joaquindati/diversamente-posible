@@ -1,0 +1,84 @@
+.footer {
+  background-color: var(--color-dark);
+  color: white;
+  padding: 60px 0 24px;
+  margin-top: auto;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footerLogo {
+  filter: brightness(0) invert(1);
+  object-fit: contain;
+}
+
+.footerSection h3 {
+  color: var(--color-yellow);
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+}
+
+.footerSection p {
+  margin-bottom: 8px;
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+.footerSubtext {
+  margin-top: 12px !important;
+  opacity: 0.6 !important;
+  font-size: 0.85rem !important;
+}
+
+.footerSection a {
+  color: white;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.footerSection a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.socialLinks a {
+  font-size: 0.95rem;
+}
+
+.footerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footerNav a {
+  color: white;
+  opacity: 0.85;
+  font-size: 0.95rem;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.footerNav a:hover {
+  opacity: 1;
+  color: var(--color-yellow);
+  text-decoration: none;
+}
+
+.footerBottom {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  opacity: 0.5;
+}
