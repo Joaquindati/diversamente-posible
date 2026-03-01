@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { DynamicFavicon } from '@/components/DynamicFavicon';
 import './globals.css';
 
 const bariol = localFont({
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${bariol.variable} ${oliver.variable}`}>
+        <DynamicFavicon />
         <a href="#main-content" className="skip-link">Ir al contenido principal</a>
         {children}
       </body>

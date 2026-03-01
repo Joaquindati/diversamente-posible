@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ColoredTitle } from '@/components/ColoredTitle';
@@ -8,6 +9,7 @@ import { Reveal } from '@/components/Reveal';
 import { AnimatedNumber } from '@/components/AnimatedNumber';
 import { EnfoqueSlider } from '@/components/EnfoqueSlider';
 import { StickyDonateButton } from '@/components/StickyDonateButton';
+import { eventos } from '@/data/eventos';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -36,7 +38,7 @@ export default function Home() {
                 href="https://donaronline.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary"
+                className="btn btn-primary btn-hover-red"
               >
                 FORMA PARTE DE NUESTRA CAUSA
               </a>
@@ -44,7 +46,7 @@ export default function Home() {
                 href="https://wa.me/5492246496999"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-secondary"
+                className="btn btn-secondary btn-hover-green"
               >
                 Quiero involucrarme
               </a>
@@ -333,7 +335,7 @@ export default function Home() {
                 href="https://donaronline.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`btn ${styles.btnCampana}`}
+                className={`btn ${styles.btnCampana} btn-hover-blue`}
               >
                 QUIERO SUMARME
               </a>
@@ -341,7 +343,7 @@ export default function Home() {
                 href="https://wa.me/5492246496999"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`btn ${styles.btnOutlineDark}`}
+                className={`btn ${styles.btnOutlineDark} btn-hover-red`}
               >
                 Hablar con el equipo
               </a>
@@ -351,7 +353,7 @@ export default function Home() {
       </section>
 
       {/* ───── MOMENTOS DESTACADOS ───── */}
-      <section className={styles.momentosSection} aria-labelledby="momentos-heading">
+      <section id="momentos" className={styles.momentosSection} aria-labelledby="momentos-heading">
         <div className="container">
           <Reveal direction="up" className="text-center">
             <h2 id="momentos-heading">
@@ -363,63 +365,23 @@ export default function Home() {
           </Reveal>
 
           <div className={styles.momentosGrid}>
-            <Reveal direction="up" delay={0.1} style={{ height: '100%' }}>
-              <a href="#contacto" className={styles.momentoCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://picsum.photos/seed/premio-abanderados/400/200"
-                  alt="Premio Abanderados 2024 — imagen placeholder"
-                  className={styles.momentoImage}
-                />
-                <div className={styles.momentoContent}>
-                  <h3>Premio Abanderados 2024</h3>
-                  <p>
-                    Diversamente Posibles fue reconocida con el Premio Abanderados por su labor
-                    en la creación de espacios de encuentro y participación para personas con
-                    y sin discapacidad.
-                  </p>
-                  <span className={styles.momentoLink}>Leer más</span>
-                </div>
-              </a>
-            </Reveal>
-
-            <Reveal direction="up" delay={0.2} style={{ height: '100%' }}>
-              <a href="#contacto" className={styles.momentoCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://picsum.photos/seed/nota-medio/400/200"
-                  alt="Nota en medios — imagen placeholder"
-                  className={styles.momentoImage}
-                />
-                <div className={styles.momentoContent}>
-                  <h3>Nota en Medios</h3>
-                  <p>
-                    Nuestra historia fue destacada en medios nacionales, visibilizando el impacto
-                    de las actividades recreativas y deportivas basadas en el diseño universal.
-                  </p>
-                  <span className={styles.momentoLink}>Leer más</span>
-                </div>
-              </a>
-            </Reveal>
-
-            <Reveal direction="up" delay={0.3} style={{ height: '100%' }}>
-              <a href="#contacto" className={styles.momentoCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://picsum.photos/seed/proximo-momento/400/200"
-                  alt="Próximo momento destacado — imagen placeholder"
-                  className={styles.momentoImage}
-                />
-                <div className={styles.momentoContent}>
-                  <h3>Próximamente</h3>
-                  <p>
-                    Seguimos construyendo momentos que transforman. Este espacio se actualizará
-                    con nuevas notas y reconocimientos.
-                  </p>
-                  <span className={styles.momentoLink}>Leer más</span>
-                </div>
-              </a>
-            </Reveal>
+            {eventos.map((evento, i) => (
+              <Reveal key={evento.slug} direction="up" delay={0.1 * (i + 1)} style={{ height: '100%' }}>
+                <Link href={`/eventos/${evento.slug}`} className={styles.momentoCard}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={evento.coverImage}
+                    alt={evento.coverAlt}
+                    className={styles.momentoImage}
+                  />
+                  <div className={styles.momentoContent}>
+                    <h3>{evento.title}</h3>
+                    <p>{evento.shortDescription}</p>
+                    <span className={styles.momentoLink}>Leer más</span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -549,7 +511,7 @@ export default function Home() {
                   href="https://donaronline.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-white"
+                  className="btn btn-white btn-hover-red"
                 >
                   Donar ahora
                 </a>
@@ -570,7 +532,7 @@ export default function Home() {
                   href="https://wa.me/5492246496999"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-white"
+                  className="btn btn-white btn-hover-green"
                 >
                   Escribinos
                 </a>
@@ -587,7 +549,7 @@ export default function Home() {
                   Si sos empresa u organización, podemos crear alianzas estratégicas para
                   impulsar acciones colectivas y multiplicar el impacto.
                 </p>
-                <a href="mailto:contacto@diversamenteposibles.org" className="btn btn-white">
+                <a href="mailto:contacto@diversamenteposibles.org" className="btn btn-white btn-hover-yellow">
                   Contactar
                 </a>
               </div>
@@ -691,7 +653,7 @@ export default function Home() {
                   href="https://instagram.com/diversamenteposibles"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialBtn}
+                  className={`${styles.socialBtn} ${styles.socialBtnRed}`}
                 >
                   Instagram
                 </a>
@@ -699,7 +661,7 @@ export default function Home() {
                   href="https://facebook.com/DiversamentePosibles"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialBtn}
+                  className={`${styles.socialBtn} ${styles.socialBtnGreen}`}
                 >
                   Facebook
                 </a>
@@ -724,7 +686,7 @@ export default function Home() {
                   placeholder="Tu email"
                   className={styles.formInput}
                 />
-                <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
+                <button type="submit" className="btn btn-primary btn-hover-green" style={{ width: '100%' }}>
                   Suscribirme
                 </button>
               </form>

@@ -3,7 +3,11 @@
 import Image from 'next/image';
 import styles from './Footer.module.css';
 
-export function Footer() {
+interface FooterProps {
+  basePath?: string;
+}
+
+export function Footer({ basePath = '' }: FooterProps) {
   return (
     <footer className={styles.footer} aria-label="Pie de página">
       <div className={`container ${styles.footerContent}`}>
@@ -50,11 +54,11 @@ export function Footer() {
         <div className={styles.footerSection}>
           <h3>Navegación</h3>
           <nav className={styles.footerNav} aria-label="Navegación del pie de página">
-            <a href="#inicio">Inicio</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#programas">Programas</a>
-            <a href="#ayudar">Cómo Ayudar</a>
-            <a href="#contacto">Contacto</a>
+            <a href={`${basePath}#inicio`}>Inicio</a>
+            <a href={`${basePath}#nosotros`}>Nosotros</a>
+            <a href={`${basePath}#programas`}>Programas</a>
+            <a href={`${basePath}#ayudar`}>Cómo Ayudar</a>
+            <a href={`${basePath}#contacto`}>Contacto</a>
           </nav>
         </div>
       </div>

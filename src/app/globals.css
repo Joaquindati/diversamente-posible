@@ -129,7 +129,7 @@ p {
   border-radius: 50px;
   font-weight: 600;
   font-family: var(--font-primary), system-ui, sans-serif;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.25s, color 0.25s, border-color 0.25s;
   cursor: pointer;
   border: none;
   font-size: 1rem;
@@ -141,6 +141,12 @@ p {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
+
+/* Hover color variants */
+.btn-hover-blue:hover  { background-color: var(--color-blue);   color: white; border-color: var(--color-blue); }
+.btn-hover-red:hover   { background-color: var(--color-red);    color: white; border-color: var(--color-red); }
+.btn-hover-yellow:hover { background-color: var(--color-yellow); color: var(--color-dark); border-color: var(--color-yellow); }
+.btn-hover-green:hover { background-color: var(--color-green);  color: white; border-color: var(--color-green); }
 
 .btn-primary {
   background-color: var(--color-blue);

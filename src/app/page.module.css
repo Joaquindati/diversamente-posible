@@ -376,6 +376,7 @@
   background-color: transparent;
   color: var(--color-dark);
   border: 2px solid var(--color-dark);
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.2s, box-shadow 0.2s;
 }
 
 /* ───── MOMENTOS DESTACADOS ───── */
@@ -534,11 +535,30 @@
   color: var(--color-blue);
   font-weight: 600;
   font-size: 0.9rem;
-  transition: all 0.2s;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
 }
 
 .socialBtn:hover {
-  background: var(--color-blue);
+  transform: translateY(-2px);
+}
+
+.socialBtnRed {
+  border-color: var(--color-red);
+  color: var(--color-red);
+}
+
+.socialBtnRed:hover {
+  background: var(--color-red);
+  color: white;
+}
+
+.socialBtnGreen {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.socialBtnGreen:hover {
+  background: var(--color-green);
   color: white;
 }
 
