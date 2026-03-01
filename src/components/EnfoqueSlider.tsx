@@ -14,6 +14,12 @@ function getArrowColors(slideIndex: number): [string, string] {
   return [left, right];
 }
 
+/** Returns a brand color different from both arrow colors */
+function getPauseColor(leftColor: string, rightColor: string): string {
+  const available = BRAND_COLORS.filter(c => c !== leftColor && c !== rightColor);
+  return available[0];
+}
+
 const SLIDES = [
   { text: <>Nos posicionamos dentro del <strong>modelo social de la discapacidad</strong>: no se trata de una condición individual a &ldquo;corregir&rdquo; o &ldquo;adaptar&rdquo;.</>, author: null },
   { text: <>Es <strong>la sociedad</strong> la que debe transformarse para garantizar verdaderas oportunidades.</>, author: null },
@@ -74,6 +80,7 @@ export function EnfoqueSlider({ onSlideChange }: EnfoqueSliderProps) {
 
   const currentSlide = SLIDES[current];
   const [leftColor, rightColor] = getArrowColors(current);
+  const pauseColor = getPauseColor(leftColor, rightColor);
 
   return (
     <div
@@ -145,7 +152,7 @@ export function EnfoqueSlider({ onSlideChange }: EnfoqueSliderProps) {
           onClick={() => setPaused(p => !p)}
           aria-label={paused ? 'Reproducir testimonios' : 'Pausar testimonios'}
           type="button"
-          style={{ borderColor: DOT_COLORS[current % DOT_COLORS.length], color: DOT_COLORS[current % DOT_COLORS.length] }}
+          style={{ borderColor: pauseColor, color: pauseColor }}
         >
           {paused ? (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
