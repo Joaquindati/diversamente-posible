@@ -19,3 +19,29 @@
   display: inline-block;
   width: 0.3em;
 }
+
+/* ── Word pulse animation (SIMPLE / POSIBLE) ── */
+@keyframes wordPulse {
+  0%, 85%, 100% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(1.15);
+  }
+  95% {
+    transform: scale(1);
+  }
+}
+
+.wordPulse {
+  display: inline-block;
+  animation: wordPulse 10s ease-in-out infinite;
+  transform-origin: center bottom;
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+
+.wordPulse:hover {
+  animation-play-state: paused;
+  transform: scale(1.18);
+}

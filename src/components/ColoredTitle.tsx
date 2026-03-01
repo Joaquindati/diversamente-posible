@@ -5,6 +5,8 @@ import styles from './ColoredTitle.module.css';
 
 const COLORS = ["#0072b9", "#e63138", "#f8b00e", "#0072b9", "#009940", "#e63138", "#f8b00e"];
 
+const ANIMATED_WORDS = ['SIMPLE', 'POSIBLE'];
+
 interface ColoredTitleProps {
   text: string;
   className?: string;
@@ -42,40 +44,55 @@ export function ColoredTitle({ text, className }: ColoredTitleProps) {
     return () => observer.disconnect();
   }, []);
 
+  const words = text.split(" ");
+
   return (
     <span ref={ref} className={className} style={{ fontFamily: "var(--font-display)" }} aria-label={text}>
-      {text.split("").map((char, i) => {
-        if (char === " ") {
-          return <span key={i} className={styles.space} aria-hidden="true">&nbsp;</span>;
-        }
-        const color = COLORS[letterIndex % COLORS.length];
-        const delay = letterIndex * 0.05;
-        letterIndex++;
+      {words.map((word, wi) => {
+        const isAnimatedWord = ANIMATED_WORDS.includes(word);
+        const letters = word.split("").map((char) => {
+          const color = COLORS[letterIndex % COLORS.length];
+          const delay = letterIndex * 0.05;
+          letterIndex++;
 
-        if (reducedMotion) {
+          if (reducedMotion) {
+            return (
+              <span
+                key={`${wi}-${letterIndex}`}
+                aria-hidden="true"
+                style={{ color, opacity: 1 }}
+              >
+                {char}
+              </span>
+            );
+          }
+
           return (
             <span
-              key={i}
+              key={`${wi}-${letterIndex}`}
               aria-hidden="true"
-              style={{ color, opacity: 1 }}
+              className={isVisible ? styles.letter : ''}
+              style={{
+                color,
+                animationDelay: `${delay}s`,
+                opacity: isVisible ? undefined : 0,
+              }}
             >
               {char}
             </span>
           );
-        }
+        });
 
         return (
-          <span
-            key={i}
-            aria-hidden="true"
-            className={isVisible ? styles.letter : ''}
-            style={{
-              color,
-              animationDelay: `${delay}s`,
-              opacity: isVisible ? undefined : 0,
-            }}
-          >
-            {char}
+          <span key={wi}>
+            {isAnimatedWord && !reducedMotion ? (
+              <span className={styles.wordPulse}>{letters}</span>
+            ) : (
+              letters
+            )}
+            {wi < words.length - 1 && (
+              <span className={styles.space} aria-hidden="true">&nbsp;</span>
+            )}
           </span>
         );
       })}
