@@ -5,6 +5,15 @@ import styles from './EnfoqueSlider.module.css';
 
 const DOT_COLORS = ['#0072b9', '#e63138', '#f8b00e', '#009940', '#0072b9', '#e63138', '#f8b00e', '#009940', '#0072b9'];
 
+const BRAND_COLORS = ['#0072b9', '#e63138', '#f8b00e', '#009940'];
+
+/** Returns two different brand colors for left and right arrows */
+function getArrowColors(slideIndex: number): [string, string] {
+  const left = BRAND_COLORS[slideIndex % BRAND_COLORS.length];
+  const right = BRAND_COLORS[(slideIndex + 2) % BRAND_COLORS.length];
+  return [left, right];
+}
+
 const SLIDES = [
   { text: <>Nos posicionamos dentro del <strong>modelo social de la discapacidad</strong>: no se trata de una condición individual a &ldquo;corregir&rdquo; o &ldquo;adaptar&rdquo;.</>, author: null },
   { text: <>Es <strong>la sociedad</strong> la que debe transformarse para garantizar verdaderas oportunidades.</>, author: null },
@@ -17,7 +26,11 @@ const SLIDES = [
   { text: <>&ldquo;Ser voluntario en Diversamente Posibles me enseñó que las verdaderas barreras están en los entornos, no en las personas.&rdquo;</>, author: 'Martín, voluntario' },
 ];
 
-export function EnfoqueSlider() {
+interface EnfoqueSliderProps {
+  onSlideChange?: (index: number) => void;
+}
+
+export function EnfoqueSlider({ onSlideChange }: EnfoqueSliderProps) {
   const [current, setCurrent] = useState(0);
   const [fading, setFading] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -26,12 +39,14 @@ export function EnfoqueSlider() {
   const advance = useCallback((to?: number) => {
     setFading(true);
     setTimeout(() => {
-      setCurrent(prev =>
-        to !== undefined ? to : (prev + 1) % SLIDES.length
-      );
+      setCurrent(prev => {
+        const next = to !== undefined ? to : (prev + 1) % SLIDES.length;
+        onSlideChange?.(next);
+        return next;
+      });
       setFading(false);
     }, 350);
-  }, []);
+  }, [onSlideChange]);
 
   const goNext = useCallback(() => {
     advance((current + 1) % SLIDES.length);
@@ -58,6 +73,7 @@ export function EnfoqueSlider() {
   }, [goNext, goPrev]);
 
   const currentSlide = SLIDES[current];
+  const [leftColor, rightColor] = getArrowColors(current);
 
   return (
     <div
@@ -67,13 +83,13 @@ export function EnfoqueSlider() {
       aria-label="Testimonios"
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      style={{ borderLeftColor: DOT_COLORS[current % DOT_COLORS.length] }}
     >
       <button
         className={`${styles.arrow} ${styles.arrowLeft}`}
         onClick={goPrev}
         aria-label="Testimonio anterior"
         type="button"
+        style={{ background: leftColor }}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <polyline points="15 18 9 12 15 6" />
@@ -97,6 +113,7 @@ export function EnfoqueSlider() {
         onClick={goNext}
         aria-label="Testimonio siguiente"
         type="button"
+        style={{ background: rightColor }}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <polyline points="9 18 15 12 9 6" />
@@ -128,6 +145,7 @@ export function EnfoqueSlider() {
           onClick={() => setPaused(p => !p)}
           aria-label={paused ? 'Reproducir testimonios' : 'Pausar testimonios'}
           type="button"
+          style={{ borderColor: DOT_COLORS[current % DOT_COLORS.length], color: DOT_COLORS[current % DOT_COLORS.length] }}
         >
           {paused ? (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

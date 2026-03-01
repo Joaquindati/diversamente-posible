@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
@@ -9,10 +10,58 @@ import { Reveal } from '@/components/Reveal';
 import { AnimatedNumber } from '@/components/AnimatedNumber';
 import { EnfoqueSlider } from '@/components/EnfoqueSlider';
 import { StickyDonateButton } from '@/components/StickyDonateButton';
-import { eventos } from '@/data/eventos';
+import { SunburstGallery } from '@/components/SunburstGallery';
+import { Lightbox } from '@/components/Lightbox';
+import { eventos, EventPhoto } from '@/data/eventos';
 import styles from './page.module.css';
 
+const galleryPhotos: EventPhoto[] = [
+  { src: 'https://picsum.photos/seed/sun-1/600/400', alt: 'Actividad comunitaria', width: 600, height: 400 },
+  { src: 'https://picsum.photos/seed/sun-2/600/400', alt: 'Jornada en la playa', width: 600, height: 400 },
+  { src: 'https://picsum.photos/seed/sun-3/600/400', alt: 'Bicicleteada inclusiva', width: 600, height: 400 },
+  { src: 'https://picsum.photos/seed/sun-4/600/400', alt: 'Taller de reciclaje', width: 600, height: 400 },
+  { src: 'https://picsum.photos/seed/sun-5/600/400', alt: 'Encuentro deportivo', width: 600, height: 400 },
+];
+
+const circlePhotos: EventPhoto[] = [
+  { src: 'https://picsum.photos/seed/circle-1/600/600', alt: 'Momento inclusivo', width: 600, height: 600 },
+  { src: 'https://picsum.photos/seed/circle-2/600/600', alt: 'Jornada de surf', width: 600, height: 600 },
+  { src: 'https://picsum.photos/seed/circle-3/600/600', alt: 'Carrera en bici', width: 600, height: 600 },
+  { src: 'https://picsum.photos/seed/circle-4/600/600', alt: 'Equipo voluntario', width: 600, height: 600 },
+  { src: 'https://picsum.photos/seed/circle-5/600/600', alt: 'Encuentro comunitario', width: 600, height: 600 },
+  { src: 'https://picsum.photos/seed/circle-6/600/600', alt: 'Actividad recreativa', width: 600, height: 600 },
+  { src: 'https://picsum.photos/seed/circle-7/600/600', alt: 'Día en la playa', width: 600, height: 600 },
+  { src: 'https://picsum.photos/seed/circle-8/600/600', alt: 'Taller grupal', width: 600, height: 600 },
+  { src: 'https://picsum.photos/seed/circle-9/600/600', alt: 'Celebración', width: 600, height: 600 },
+];
+
 export default function Home() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleSlideChange = useCallback((index: number) => {
+    setCurrentSlide(index);
+  }, []);
+
+  const openLightbox = useCallback((index: number) => {
+    setLightboxIndex(index);
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxIndex(null);
+  }, []);
+
+  const goPrev = useCallback(() => {
+    setLightboxIndex(prev =>
+      prev !== null ? (prev - 1 + galleryPhotos.length) % galleryPhotos.length : null
+    );
+  }, []);
+
+  const goNext = useCallback(() => {
+    setLightboxIndex(prev =>
+      prev !== null ? (prev + 1) % galleryPhotos.length : null
+    );
+  }, []);
   return (
     <main id="main-content" className={styles.main}>
       <Navbar />
@@ -106,12 +155,19 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Enfoque / Testimonios */}
-          <Reveal direction="up" delay={0.1}>
-            <EnfoqueSlider />
-          </Reveal>
+          {/* Enfoque / Testimonios + Galería + Misión/Visión/Valores */}
+          <div className={styles.nosotrosGrid}>
+            <Reveal direction="left" className={styles.nosotrosSlider}>
+              <EnfoqueSlider onSlideChange={handleSlideChange} />
+            </Reveal>
+            <Reveal direction="right" className={styles.nosotrosGallery}>
+              <SunburstGallery
+                photos={galleryPhotos}
+                circlePhoto={circlePhotos[currentSlide % circlePhotos.length]}
+                onPhotoClick={openLightbox}
+              />
+            </Reveal>
 
-          <div className={styles.missionVisionValores}>
             <Reveal direction="up" delay={0} style={{ height: '100%' }}>
               <div className={`${styles.mvCard} ${styles.mvCardRed}`}>
                 <h3>Nuestra Misión</h3>
@@ -697,6 +753,16 @@ export default function Home() {
 
       <Footer />
       <StickyDonateButton />
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          photos={galleryPhotos}
+          currentIndex={lightboxIndex}
+          onClose={closeLightbox}
+          onPrev={goPrev}
+          onNext={goNext}
+        />
+      )}
     </main>
   );
 }

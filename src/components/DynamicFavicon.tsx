@@ -22,12 +22,15 @@ export function DynamicFavicon() {
   useEffect(() => {
     const index = parseInt(localStorage.getItem('favicon-color-index') ?? '0', 10);
     const color = COLORS[index % COLORS.length];
+    const href = generateFavicon(color);
 
-    const link: HTMLLinkElement =
-      document.querySelector("link[rel~='icon']") ?? document.createElement('link');
+    // Remove all existing favicons
+    document.querySelectorAll("link[rel='icon'], link[rel='shortcut icon']").forEach((el) => el.remove());
+
+    const link = document.createElement('link');
     link.rel = 'icon';
     link.type = 'image/png';
-    link.href = generateFavicon(color);
+    link.href = href;
     document.head.appendChild(link);
 
     localStorage.setItem('favicon-color-index', String((index + 1) % COLORS.length));
