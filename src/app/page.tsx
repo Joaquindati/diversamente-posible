@@ -7,11 +7,12 @@ import { ColoredTitle } from '@/components/ColoredTitle';
 import { Reveal } from '@/components/Reveal';
 import { AnimatedNumber } from '@/components/AnimatedNumber';
 import { EnfoqueSlider } from '@/components/EnfoqueSlider';
+import { StickyDonateButton } from '@/components/StickyDonateButton';
 import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main id="main-content" className={styles.main}>
       <Navbar />
 
       {/* ───── HERO ───── */}
@@ -53,11 +54,11 @@ export default function Home() {
       </section>
 
       {/* ───── NOSOTROS ───── */}
-      <section id="nosotros" className="section">
+      <section id="nosotros" className="section" aria-labelledby="nosotros-heading">
         <div className="container">
           <Reveal direction="up" className="text-center" style={{ marginBottom: '60px' }}>
-            <h2>
-              <ColoredTitle text="QUIÉNES SOMOS" />
+            <h2 id="nosotros-heading">
+              <ColoredTitle text="¿QUIÉNES SOMOS?" />
             </h2>
           </Reveal>
 
@@ -103,7 +104,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Enfoque */}
+          {/* Enfoque / Testimonios */}
           <Reveal direction="up" delay={0.1}>
             <EnfoqueSlider />
           </Reveal>
@@ -145,15 +146,15 @@ export default function Home() {
       </section>
 
       {/* ───── PROGRAMAS ───── */}
-      <section id="programas" className={styles.programasSection}>
+      <section id="programas" className={styles.programasSection} aria-labelledby="programas-heading">
         <div className="container">
           <Reveal direction="up" className="text-center" style={{ marginBottom: '60px' }}>
-            <h2>
+            <h2 id="programas-heading">
               <ColoredTitle text="NUESTROS PROYECTOS" />
             </h2>
             <p className={styles.sectionSubtitle}>
-              Dos iniciativas que transforman entornos y generan verdaderas oportunidades
-              a través del deporte y la movilidad inclusiva.
+              Iniciativas que transforman entornos y generan verdaderas oportunidades
+              a través del deporte y la movilidad accesible.
             </p>
           </Reveal>
 
@@ -161,7 +162,7 @@ export default function Home() {
           <div className={styles.programaRow}>
             <Reveal direction="left" className={styles.programaText}>
               <span className={styles.programaBadge} style={{ backgroundColor: 'var(--color-green)' }}>
-                Movilidad Inclusiva
+                Movilidad Accesible
               </span>
               <h3 style={{ marginTop: '16px' }}>
                 <ColoredTitle text="DisfrutArte en Bici" />
@@ -198,7 +199,7 @@ export default function Home() {
           <div className={`${styles.programaRow} ${styles.programaRowReverse}`}>
             <Reveal direction="right" className={styles.programaText}>
               <span className={styles.programaBadge} style={{ backgroundColor: 'var(--color-blue)' }}>
-                Deporte Adaptado
+                Deporte para Personas con Discapacidad
               </span>
               <h3 style={{ marginTop: '16px' }}>
                 <ColoredTitle text="DisfrutArte en Surf" />
@@ -242,14 +243,86 @@ export default function Home() {
               />
             </Reveal>
           </div>
+
+          {/* Programa 3 - ReciclArte */}
+          <div className={styles.programaRow}>
+            <Reveal direction="left" className={styles.programaText}>
+              <span className={styles.programaBadge} style={{ backgroundColor: 'var(--color-green)' }}>
+                Sustentabilidad
+              </span>
+              <h3 style={{ marginTop: '16px' }}>
+                <ColoredTitle text="ReciclArte" />
+              </h3>
+              <p>
+                Un proyecto que une <strong>sustentabilidad y creatividad</strong>. Recuperamos materiales
+                en desuso para transformarlos en recursos útiles y obras de arte colectivo. Cada
+                objeto reciclado es una oportunidad de aprendizaje, participación y cuidado
+                del medio ambiente.
+              </p>
+              <div className={styles.equipGrid}>
+                <div className={styles.equipItem}>
+                  <span className={styles.equipNum} style={{ fontSize: '1.2rem' }}>♻️</span>
+                  <span>Materiales recuperados</span>
+                </div>
+                <div className={styles.equipItem}>
+                  <span className={styles.equipNum} style={{ fontSize: '1.2rem' }}>🎨</span>
+                  <span>Arte colectivo</span>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal direction="right" className={styles.programaVisual}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://picsum.photos/seed/reciclarte/400/300"
+                alt="Proyecto ReciclArte — imagen placeholder"
+                className={styles.programaImage}
+              />
+            </Reveal>
+          </div>
+
+          {/* Programa 4 - Maratón */}
+          <div className={`${styles.programaRow} ${styles.programaRowReverse}`}>
+            <Reveal direction="right" className={styles.programaText}>
+              <span className={styles.programaBadge} style={{ backgroundColor: 'var(--color-red)' }}>
+                Evento Deportivo
+              </span>
+              <h3 style={{ marginTop: '16px' }}>
+                <ColoredTitle text="Nuestra Maratón" />
+              </h3>
+              <p>
+                Un evento deportivo que convoca a toda la comunidad. Nuestra maratón es un punto de
+                encuentro donde <strong>personas con y sin discapacidad</strong> comparten un mismo
+                recorrido, celebrando la diversidad y el movimiento como herramientas de
+                transformación social.
+              </p>
+              <div className={styles.equipGrid}>
+                <div className={styles.equipItem}>
+                  <span className={styles.equipNum} style={{ fontSize: '1.2rem' }}>🏃</span>
+                  <span>Participantes</span>
+                </div>
+                <div className={styles.equipItem}>
+                  <span className={styles.equipNum} style={{ fontSize: '1.2rem' }}>🤝</span>
+                  <span>Encuentro comunitario</span>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal direction="left" className={styles.programaVisual}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://picsum.photos/seed/maraton-dp/400/300"
+                alt="Nuestra Maratón — imagen placeholder"
+                className={`${styles.programaImage} ${styles.programaImageRight}`}
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
 
       {/* ───── CÓMO AYUDAR ───── */}
-      <section id="ayudar" className={styles.ayudarSection}>
+      <section id="ayudar" className={styles.ayudarSection} aria-labelledby="ayudar-heading">
         <div className="container text-center">
           <Reveal direction="up">
-            <h2 className={styles.whiteTitle}>¿CÓMO PODÉS AYUDAR?</h2>
+            <h2 id="ayudar-heading" className={styles.whiteTitle}>¿CÓMO PODÉS AYUDAR?</h2>
             <p className={styles.ayudarSubtitle}>
               Hay muchas formas de sumarte a nuestra causa. Elegí la que más se adapte a vos.
             </p>
@@ -318,10 +391,10 @@ export default function Home() {
       </section>
 
       {/* ───── CAMPAÑA ───── */}
-      <section className={styles.campanaSection}>
+      <section className={styles.campanaSection} aria-labelledby="campana-heading">
         <div className="container text-center">
           <Reveal direction="up">
-            <h2 className={styles.campanaTitle}>
+            <h2 id="campana-heading" className={styles.campanaTitle}>
               ¿Te imaginas llegar con 1000 Bicicletas y 1000 Sillas a todo el país?
             </h2>
           </Reveal>
@@ -340,7 +413,7 @@ export default function Home() {
                 href="https://wa.me/5492246496999"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-outline-white"
+                className={`btn ${styles.btnOutlineDark}`}
               >
                 Hablar con el equipo
               </a>
@@ -349,11 +422,80 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ───── MOMENTOS DESTACADOS ───── */}
+      <section className={styles.momentosSection} aria-labelledby="momentos-heading">
+        <div className="container">
+          <Reveal direction="up" className="text-center">
+            <h2 id="momentos-heading">
+              <ColoredTitle text="MOMENTOS DESTACADOS" />
+            </h2>
+          </Reveal>
+
+          <div className={styles.momentosGrid}>
+            <Reveal direction="up" delay={0.1}>
+              <div className={styles.momentoCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://picsum.photos/seed/premio-abanderados/400/200"
+                  alt="Premio Abanderados 2024 — imagen placeholder"
+                  className={styles.momentoImage}
+                />
+                <div className={styles.momentoContent}>
+                  <h3>Premio Abanderados 2024</h3>
+                  <p>
+                    Diversamente Posibles fue reconocida con el Premio Abanderados por su labor
+                    en la creación de espacios de encuentro y participación para personas con
+                    y sin discapacidad.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal direction="up" delay={0.2}>
+              <div className={styles.momentoCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://picsum.photos/seed/nota-medio/400/200"
+                  alt="Nota en medios — imagen placeholder"
+                  className={styles.momentoImage}
+                />
+                <div className={styles.momentoContent}>
+                  <h3>Nota en Medios</h3>
+                  <p>
+                    Nuestra historia fue destacada en medios nacionales, visibilizando el impacto
+                    de las actividades recreativas y deportivas basadas en el diseño universal.
+                  </p>
+                  <a href="#contacto" className={styles.momentoLink}>Leer más</a>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal direction="up" delay={0.3}>
+              <div className={styles.momentoCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://picsum.photos/seed/proximo-momento/400/200"
+                  alt="Próximo momento destacado — imagen placeholder"
+                  className={styles.momentoImage}
+                />
+                <div className={styles.momentoContent}>
+                  <h3>Próximamente</h3>
+                  <p>
+                    Seguimos construyendo momentos que transforman. Este espacio se actualizará
+                    con nuevas notas y reconocimientos.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* ───── EQUIPO ───── */}
-      <section className="section" style={{ background: 'var(--color-light-gray)' }}>
+      <section className="section" style={{ background: 'var(--color-light-gray)' }} aria-labelledby="equipo-heading">
         <div className="container">
           <Reveal direction="up" className="text-center" style={{ marginBottom: '48px' }}>
-            <h2>
+            <h2 id="equipo-heading">
               <ColoredTitle text="NUESTRO EQUIPO" />
             </h2>
           </Reveal>
@@ -364,9 +506,10 @@ export default function Home() {
               { name: 'Victoria Pereyra', role: 'Fundraising' },
               { name: 'Silvia Olgiatti', role: 'Comisión de Familias' },
               { name: 'María Cristina Silva', role: 'Comisión de Familias' },
-              { name: 'Laura Benitez', role: 'Comisión de Familias / Gestión de Personas' },
-              { name: 'Caterina Wiytiszen', role: 'Gestión de Personas y Cultura' },
-              { name: 'Camila Gianoli', role: 'Gestión de Personas y Cultura' },
+              { name: 'Laura Benitez', role: 'Coordinación Voluntarios' },
+              { name: 'Caterina Wiytiszen', role: 'Gestión Personas' },
+              { name: 'Camila Gianoli', role: 'Gestión Personas' },
+              { name: 'Nerea Depetris Berardo', role: 'Comunicación y Redes' },
               { name: 'Joaquín Datí', role: 'Desarrollo Tecnológico' },
             ].map((member, i) => (
               <Reveal key={member.name} direction="scale" delay={i * 0.07}>
@@ -381,10 +524,10 @@ export default function Home() {
       </section>
 
       {/* ───── CONTACTO ───── */}
-      <section id="contacto" className="section">
+      <section id="contacto" className="section" aria-labelledby="contacto-heading">
         <div className="container">
           <Reveal direction="up" className="text-center" style={{ marginBottom: '60px' }}>
-            <h2>
+            <h2 id="contacto-heading">
               <ColoredTitle text="CONTACTO" />
             </h2>
             <p className={styles.sectionSubtitle}>
@@ -397,7 +540,7 @@ export default function Home() {
               <h3>Información de contacto</h3>
 
               <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>📧</span>
+                <span className={styles.contactIcon} aria-hidden="true">📧</span>
                 <div>
                   <strong>Dirección General</strong>
                   <p>
@@ -414,7 +557,7 @@ export default function Home() {
               </div>
 
               <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>👥</span>
+                <span className={styles.contactIcon} aria-hidden="true">👥</span>
                 <div>
                   <strong>Gestión de Personas</strong>
                   <p>
@@ -431,10 +574,10 @@ export default function Home() {
               </div>
 
               <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>📍</span>
+                <span className={styles.contactIcon} aria-hidden="true">📍</span>
                 <div>
                   <strong>Sede Social</strong>
-                  <p>Costa del Este, Buenos Aires, Argentina</p>
+                  <p>Av 6 nro 1217 - Costa del Este - Partido de la Costa - Provincia de Buenos Aires</p>
                 </div>
               </div>
 
@@ -462,8 +605,20 @@ export default function Home() {
               <h3>Suscribite a nuestro newsletter</h3>
               <p>Enterate de nuestras actividades, novedades y cómo podés ser parte.</p>
               <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
-                <input type="text" placeholder="Tu nombre" className={styles.formInput} />
-                <input type="email" placeholder="Tu email" className={styles.formInput} />
+                <label htmlFor="newsletter-name" className="sr-only">Tu nombre</label>
+                <input
+                  id="newsletter-name"
+                  type="text"
+                  placeholder="Tu nombre"
+                  className={styles.formInput}
+                />
+                <label htmlFor="newsletter-email" className="sr-only">Tu email</label>
+                <input
+                  id="newsletter-email"
+                  type="email"
+                  placeholder="Tu email"
+                  className={styles.formInput}
+                />
                 <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
                   Suscribirme
                 </button>
@@ -473,7 +628,108 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ───── TIENDA (Próximamente) ───── */}
+      <section id="tienda" className={`${styles.proximamenteSection} ${styles.proximamenteBg}`} aria-labelledby="tienda-heading">
+        <div className="container">
+          <Reveal direction="up" className="text-center">
+            <span className={styles.proximamenteBadge}>Próximamente</span>
+            <h2 id="tienda-heading">
+              <ColoredTitle text="NUESTRA TIENDA" />
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Merchandising oficial de Diversamente Posibles. Tu compra apoya directamente nuestros proyectos.
+            </p>
+          </Reveal>
+
+          <div className={styles.tiendaGrid}>
+            {[
+              { name: 'Remera Diversamente', price: '$15.000', img: 'https://picsum.photos/seed/remera-dp/400/200' },
+              { name: 'Taza Mundo Posible', price: '$8.000', img: 'https://picsum.photos/seed/taza-dp/400/200' },
+              { name: 'Stickers Pack', price: '$3.000', img: 'https://picsum.photos/seed/stickers-dp/400/200' },
+            ].map((product) => (
+              <Reveal key={product.name} direction="up">
+                <div className={styles.tiendaCard}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={product.img}
+                    alt={`${product.name} — imagen placeholder`}
+                    className={styles.tiendaImage}
+                  />
+                  <div className={styles.tiendaContent}>
+                    <h3>{product.name}</h3>
+                    <p className={styles.tiendaPrice}>{product.price}</p>
+                    <button className="btn btn-primary" disabled aria-disabled="true">
+                      Comprar
+                    </button>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <p className={styles.proximamenteNote}>
+            Esta sección es un ejemplo funcional. Los productos y precios son ficticios.
+          </p>
+        </div>
+      </section>
+
+      {/* ───── INSCRIPCIÓN A EVENTOS (Próximamente) ───── */}
+      <section id="inscripcion" className={styles.proximamenteSection} aria-labelledby="inscripcion-heading">
+        <div className="container">
+          <Reveal direction="up" className="text-center">
+            <span className={styles.proximamenteBadge}>Próximamente</span>
+            <h2 id="inscripcion-heading">
+              <ColoredTitle text="INSCRIPCIÓN A EVENTOS" />
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Inscribite a nuestras actividades, maratones y jornadas deportivas.
+            </p>
+          </Reveal>
+
+          <div className={styles.inscripcionForm}>
+            <label htmlFor="inscripcion-nombre" className="sr-only">Nombre completo</label>
+            <input
+              id="inscripcion-nombre"
+              type="text"
+              placeholder="Nombre completo"
+              className={styles.formInput}
+              disabled
+              aria-disabled="true"
+            />
+            <label htmlFor="inscripcion-email" className="sr-only">Email</label>
+            <input
+              id="inscripcion-email"
+              type="email"
+              placeholder="Email"
+              className={styles.formInput}
+              disabled
+              aria-disabled="true"
+            />
+            <label htmlFor="inscripcion-evento" className="sr-only">Seleccionar evento</label>
+            <select id="inscripcion-evento" disabled aria-disabled="true">
+              <option value="">Seleccioná un evento</option>
+              <option value="maraton">Nuestra Maratón 2026</option>
+              <option value="surf">Jornada de Surf</option>
+              <option value="bici">Carrera en Bici</option>
+            </select>
+            <label htmlFor="inscripcion-comentarios" className="sr-only">Comentarios</label>
+            <textarea
+              id="inscripcion-comentarios"
+              placeholder="Comentarios (opcional)"
+              disabled
+              aria-disabled="true"
+            />
+            <button className="btn btn-primary" disabled aria-disabled="true" style={{ width: '100%' }}>
+              Inscribirme
+            </button>
+          </div>
+          <p className={styles.proximamenteNote}>
+            Esta sección es un ejemplo funcional. El formulario no envía datos aún.
+          </p>
+        </div>
+      </section>
+
       <Footer />
+      <StickyDonateButton />
     </main>
   );
 }

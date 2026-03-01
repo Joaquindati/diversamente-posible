@@ -27,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${bariol.variable} ${oliver.variable}`}>
+        <a href="#main-content" className="skip-link">Ir al contenido principal</a>
         {children}
       </body>
     </html>

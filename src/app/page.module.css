@@ -117,6 +117,9 @@
 .mvCard {
   padding: 32px;
   border-radius: var(--border-radius);
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
 }
 
 .mvCard h3 {
@@ -130,6 +133,7 @@
   margin: 0;
   opacity: 0.9;
   line-height: 1.7;
+  flex-grow: 1;
 }
 
 .mvCardRed {
@@ -144,11 +148,22 @@
   background: var(--color-yellow);
 }
 
+/* Yellow card contrast fix — text must be dark on yellow */
+.mvCardYellow h3 {
+  color: var(--color-dark);
+}
+
+.mvCardYellow p {
+  color: var(--color-dark);
+  opacity: 1;
+}
+
 /* Valores */
 .valoresGrid {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  flex-grow: 1;
 }
 
 .valorItem {
@@ -159,6 +174,13 @@
   font-weight: 600;
   color: white;
   font-size: 0.9rem;
+}
+
+/* Yellow card valor items contrast fix */
+.mvCardYellow .valorItem {
+  color: var(--color-dark);
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 /* ───── PROGRAMAS ───── */
@@ -324,7 +346,7 @@
 }
 
 .campanaTitle {
-  color: white;
+  color: var(--color-dark);
   font-size: 2.4rem;
   max-width: 800px;
   margin: 0 auto 24px;
@@ -332,7 +354,7 @@
 }
 
 .campanaCta {
-  color: white;
+  color: var(--color-dark);
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 40px;
@@ -347,8 +369,74 @@
 
 .btnCampana {
   background: white;
-  color: var(--color-yellow);
+  color: var(--color-dark);
   font-weight: 700;
+}
+
+.btnOutlineDark {
+  background-color: transparent;
+  color: var(--color-dark);
+  border: 2px solid var(--color-dark);
+}
+
+/* ───── MOMENTOS DESTACADOS ───── */
+.momentosSection {
+  background: white;
+  padding: 80px 0;
+}
+
+.momentosGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.momentoCard {
+  background: var(--color-light-gray);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.momentoImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.momentoContent {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.momentoContent h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--color-dark);
+}
+
+.momentoContent p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.momentoLink {
+  display: inline-block;
+  color: var(--color-blue);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+
+.momentoLink:hover {
+  text-decoration: underline;
 }
 
 /* ───── EQUIPO ───── */
@@ -464,12 +552,115 @@
   border-radius: 8px;
   font-size: 1rem;
   font-family: var(--font-primary), system-ui, sans-serif;
-  outline: none;
   transition: border-color 0.2s;
 }
 
-.formInput:focus {
+.formInput:focus-visible {
   border-color: var(--color-blue);
+  outline: 3px solid #005fcc;
+  outline-offset: 1px;
+}
+
+/* ───── PRÓXIMAMENTE SECTIONS ───── */
+.proximamenteSection {
+  padding: 80px 0;
+  position: relative;
+}
+
+.proximamenteBg {
+  background: var(--color-light-gray);
+}
+
+.proximamenteOverlay {
+  position: relative;
+}
+
+.proximamenteBadge {
+  display: inline-block;
+  background: var(--color-red);
+  color: white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 32px;
+}
+
+.proximamenteNote {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 24px;
+  font-style: italic;
+}
+
+/* Tienda grid */
+.tiendaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+  opacity: 0.6;
+}
+
+.tiendaCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.tiendaImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.tiendaContent {
+  padding: 20px;
+  text-align: center;
+}
+
+.tiendaContent h3 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.tiendaPrice {
+  color: var(--color-blue);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+/* Inscripcion form */
+.inscripcionForm {
+  max-width: 600px;
+  margin: 32px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0.6;
+}
+
+.inscripcionForm select {
+  padding: 14px 18px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--font-primary), system-ui, sans-serif;
+  background: white;
+}
+
+.inscripcionForm textarea {
+  padding: 14px 18px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--font-primary), system-ui, sans-serif;
+  resize: vertical;
+  min-height: 100px;
 }
 
 /* ───── RESPONSIVE ───── */
@@ -530,5 +721,13 @@
 
   .equipoGrid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .momentosGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tiendaGrid {
+    grid-template-columns: 1fr;
   }
 }

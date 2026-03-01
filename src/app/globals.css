@@ -21,6 +21,19 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 html,
 body {
   max-width: 100vw;
@@ -31,7 +44,9 @@ body {
   font-family: var(--font-primary), system-ui, sans-serif;
   color: var(--color-dark);
   background: var(--color-white);
-  line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  letter-spacing: 0.02em;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -45,14 +60,51 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   margin-bottom: 1rem;
   line-height: 1.2;
+  letter-spacing: 0.01em;
 }
 
-h1 { font-size: 3.5rem; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 1.75rem; }
+h1 { font-size: 3.75rem; }
+h2 { font-size: 2.65rem; }
+h3 { font-size: 1.85rem; }
 
 p {
   margin-bottom: 1rem;
+}
+
+/* ── Accessibility ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--color-blue);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 0 0 8px 8px;
+  z-index: 10000;
+  font-weight: 600;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
 }
 
 /* Container */
@@ -114,9 +166,9 @@ p {
 
 /* Responsive */
 @media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 2rem; }
-  h3 { font-size: 1.5rem; }
+  h1 { font-size: 2.6rem; }
+  h2 { font-size: 2.1rem; }
+  h3 { font-size: 1.55rem; }
 
   .section {
     padding: 60px 0;

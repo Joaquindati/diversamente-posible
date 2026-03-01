@@ -1,14 +1,26 @@
 .slider {
   background: linear-gradient(135deg, rgba(0, 114, 185, 0.05) 0%, rgba(0, 153, 64, 0.05) 100%);
-  padding: 32px 32px 24px;
+  padding: 32px 64px 24px;
   border-radius: 12px;
   margin-bottom: 48px;
   font-size: 1.05rem;
   line-height: 1.8;
-  height: 180px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+}
+
+.slider:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+}
+
+.slideArea {
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .slide {
@@ -19,8 +31,16 @@
 }
 
 .slide p {
-  margin: 0 0 20px;
+  margin: 0 0 8px;
   color: var(--color-dark);
+}
+
+.author {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-blue);
+  font-style: italic;
+  margin-top: 8px;
 }
 
 .slideFading {
@@ -28,7 +48,46 @@
   transform: translateY(10px);
 }
 
-/* ── Dots ── */
+/* ── Arrows ── */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 114, 185, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-blue);
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.arrow:hover {
+  background: rgba(0, 114, 185, 0.2);
+}
+
+.arrowLeft {
+  left: 12px;
+}
+
+.arrowRight {
+  right: 12px;
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
 .dots {
   display: flex;
   gap: 8px;
@@ -55,4 +114,44 @@
 .dotActive {
   background: var(--color-blue);
   transform: scale(1.35);
+}
+
+.pauseBtn {
+  background: rgba(0, 114, 185, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-blue);
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.pauseBtn:hover {
+  background: rgba(0, 114, 185, 0.2);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .slider {
+    padding: 24px 48px 20px;
+    min-height: 220px;
+  }
+
+  .arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .arrowLeft {
+    left: 4px;
+  }
+
+  .arrowRight {
+    right: 4px;
+  }
 }

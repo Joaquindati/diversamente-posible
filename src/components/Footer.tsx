@@ -5,7 +5,7 @@ import styles from './Footer.module.css';
 
 export function Footer() {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} aria-label="Pie de página">
       <div className={`container ${styles.footerContent}`}>
         <div className={styles.footerSection}>
           <Image
@@ -17,7 +17,7 @@ export function Footer() {
           />
           <p style={{ marginTop: '16px' }}>Transformar barreras en oportunidades.</p>
           <p className={styles.footerSubtext}>
-            Asociación Civil — Costa del Este, Buenos Aires
+            Asociación Civil — Av 6 nro 1217 - Costa del Este - Partido de la Costa - Provincia de Buenos Aires
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export function Footer() {
 
         <div className={styles.footerSection}>
           <h3>Navegación</h3>
-          <nav className={styles.footerNav}>
+          <nav className={styles.footerNav} aria-label="Navegación del pie de página">
             <a href="#inicio">Inicio</a>
             <a href="#nosotros">Nosotros</a>
             <a href="#programas">Programas</a>
