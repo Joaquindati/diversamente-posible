@@ -292,6 +292,12 @@
   line-height: 1;
 }
 
+.equipIcon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
 /* ───── CÓMO AYUDAR ───── */
 .ayudarSection {
   background: var(--color-blue);
@@ -517,7 +523,8 @@
 }
 
 .contactIcon {
-  font-size: 1.3rem;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
 }
 

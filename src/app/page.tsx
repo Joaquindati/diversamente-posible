@@ -319,11 +319,11 @@ export default function Home() {
               </p>
               <div className={styles.equipGrid}>
                 <div className={styles.equipItem}>
-                  <span className={styles.equipNum} style={{ fontSize: '1.2rem' }}>♻️</span>
+                  <svg className={styles.equipIcon} viewBox="0 0 24 24" fill="var(--color-green)" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                   <span>Materiales recuperados</span>
                 </div>
                 <div className={styles.equipItem}>
-                  <span className={styles.equipNum} style={{ fontSize: '1.2rem' }}>🎨</span>
+                  <svg className={styles.equipIcon} viewBox="0 0 24 24" fill="var(--color-yellow)" aria-hidden="true"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34a.996.996 0 0 0-1.41 0L9 12.25 11.75 15l8.96-8.96a.996.996 0 0 0 0-1.41z"/></svg>
                   <span>Arte colectivo</span>
                 </div>
               </div>
@@ -355,11 +355,11 @@ export default function Home() {
               </p>
               <div className={styles.equipGrid}>
                 <div className={styles.equipItem}>
-                  <span className={styles.equipNum} style={{ fontSize: '1.2rem' }}>🏃</span>
+                  <svg className={styles.equipIcon} viewBox="0 0 24 24" fill="var(--color-blue)" aria-hidden="true"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
                   <span>Participantes</span>
                 </div>
                 <div className={styles.equipItem}>
-                  <span className={styles.equipNum} style={{ fontSize: '1.2rem' }}>🤝</span>
+                  <svg className={styles.equipIcon} viewBox="0 0 24 24" fill="var(--color-red)" aria-hidden="true"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>
                   <span>Encuentro comunitario</span>
                 </div>
               </div>
@@ -663,7 +663,7 @@ export default function Home() {
               <h3>Información de contacto</h3>
 
               <div className={styles.contactItem}>
-                <span className={styles.contactIcon} aria-hidden="true">📧</span>
+                <svg className={styles.contactIcon} viewBox="0 0 24 24" fill="var(--color-blue)" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 <div>
                   <strong>Dirección General</strong>
                   <p>
@@ -680,7 +680,7 @@ export default function Home() {
               </div>
 
               <div className={styles.contactItem}>
-                <span className={styles.contactIcon} aria-hidden="true">👥</span>
+                <svg className={styles.contactIcon} viewBox="0 0 24 24" fill="var(--color-red)" aria-hidden="true"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
                 <div>
                   <strong>Gestión de Personas</strong>
                   <p>
@@ -697,7 +697,7 @@ export default function Home() {
               </div>
 
               <div className={styles.contactItem}>
-                <span className={styles.contactIcon} aria-hidden="true">📍</span>
+                <svg className={styles.contactIcon} viewBox="0 0 24 24" fill="var(--color-green)" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                 <div>
                   <strong>Sede Social</strong>
                   <p>Av 6 nro 1217 - Costa del Este - Partido de la Costa - Provincia de Buenos Aires</p>

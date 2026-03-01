@@ -49,7 +49,7 @@ export function ColoredTitle({ text, className }: ColoredTitleProps) {
   return (
     <span ref={ref} className={className} style={{ fontFamily: "var(--font-display)" }} aria-label={text}>
       {words.map((word, wi) => {
-        const isAnimatedWord = ANIMATED_WORDS.includes(word);
+        const animatedIndex = ANIMATED_WORDS.indexOf(word);
         const letters = word.split("").map((char) => {
           const color = COLORS[letterIndex % COLORS.length];
           const delay = letterIndex * 0.05;
@@ -85,8 +85,8 @@ export function ColoredTitle({ text, className }: ColoredTitleProps) {
 
         return (
           <span key={wi}>
-            {isAnimatedWord && !reducedMotion ? (
-              <span className={styles.wordPulse}>{letters}</span>
+            {animatedIndex >= 0 && !reducedMotion ? (
+              <span className={animatedIndex === 0 ? styles.wordPulseFirst : styles.wordPulseSecond}>{letters}</span>
             ) : (
               letters
             )}

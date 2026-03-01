@@ -20,28 +20,37 @@
   width: 0.3em;
 }
 
-/* ── Word pulse animation (SIMPLE / POSIBLE) ── */
-@keyframes wordPulse {
-  0%, 85%, 100% {
-    transform: scale(1);
-  }
-  90% {
-    transform: scale(1.15);
-  }
-  95% {
-    transform: scale(1);
-  }
+/* ── Sequential word pulse: SIMPLE then POSIBLE in 10s ── */
+@keyframes pulseFirst {
+  0%, 100% { transform: scale(1); }
+  5%       { transform: scale(1.18); }
+  10%      { transform: scale(1); }
 }
 
-.wordPulse {
+@keyframes pulseSecond {
+  0%, 14%, 100% { transform: scale(1); }
+  19%           { transform: scale(1.18); }
+  24%           { transform: scale(1); }
+}
+
+.wordPulseFirst,
+.wordPulseSecond {
   display: inline-block;
-  animation: wordPulse 10s ease-in-out infinite;
   transform-origin: center bottom;
   cursor: default;
   transition: transform 0.3s ease;
 }
 
-.wordPulse:hover {
+.wordPulseFirst {
+  animation: pulseFirst 10s ease-in-out infinite;
+}
+
+.wordPulseSecond {
+  animation: pulseSecond 10s ease-in-out infinite;
+}
+
+.wordPulseFirst:hover,
+.wordPulseSecond:hover {
   animation-play-state: paused;
   transform: scale(1.18);
 }
