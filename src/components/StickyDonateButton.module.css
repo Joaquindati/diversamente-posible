@@ -15,7 +15,7 @@
   letter-spacing: 0.03em;
   text-decoration: none;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.2s;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.2s, background-color 0.35s ease, color 0.35s ease;
   opacity: 0;
   transform: translateY(20px);
   pointer-events: none;
@@ -30,6 +30,27 @@
 .stickyDonate:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* On dark/colored backgrounds: white button, blue text */
+.stickyDonate.onDark {
+  background: white;
+  color: var(--color-blue);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.stickyDonate.onDark:hover {
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* On yellow background: green button */
+.stickyDonate.onYellow {
+  background: var(--color-green);
+  color: white;
+}
+
+.stickyDonate.onYellow:hover {
+  box-shadow: 0 6px 28px rgba(0, 153, 64, 0.35);
 }
 
 .icon {

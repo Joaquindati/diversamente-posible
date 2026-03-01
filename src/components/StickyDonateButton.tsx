@@ -1,26 +1,101 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './StickyDonateButton.module.css';
+
+type Variant = 'light' | 'dark' | 'yellow';
+
+function getLuminance(r: number, g: number, b: number) {
+  const [rs, gs, bs] = [r, g, b].map(c => {
+    c = c / 255;
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+}
+
+function parseColor(color: string): [number, number, number] | null {
+  if (color.startsWith('rgb')) {
+    const m = color.match(/(\d+)/g);
+    if (m && m.length >= 3) return [+m[0], +m[1], +m[2]];
+  }
+  return null;
+}
 
 export function StickyDonateButton() {
   const [visible, setVisible] = useState(false);
+  const [variant, setVariant] = useState<Variant>('light');
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  const detect = useCallback(() => {
+    if (!ref.current) return;
+
+    setVisible(window.scrollY > window.innerHeight * 0.8);
+
+    const rect = ref.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    ref.current.style.pointerEvents = 'none';
+    const el = document.elementFromPoint(cx, cy);
+    ref.current.style.pointerEvents = '';
+
+    if (!el) return;
+
+    let node: Element | null = el;
+    let bg: string | null = null;
+
+    while (node && node !== document.documentElement) {
+      const computed = getComputedStyle(node).backgroundColor;
+      if (computed && computed !== 'rgba(0, 0, 0, 0)' && computed !== 'transparent') {
+        bg = computed;
+        break;
+      }
+      node = node.parentElement;
+    }
+
+    if (!bg) {
+      setVariant('light');
+      return;
+    }
+
+    const rgb = parseColor(bg);
+    if (!rgb) {
+      setVariant('light');
+      return;
+    }
+
+    // Detect yellow background (high R, medium G, low B)
+    const [r, g, b] = rgb;
+    const isYellow = r > 200 && g > 140 && g < 200 && b < 50;
+
+    if (isYellow) {
+      setVariant('yellow');
+    } else {
+      const lum = getLuminance(...rgb);
+      setVariant(lum < 0.4 ? 'dark' : 'light');
+    }
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setVisible(window.scrollY > window.innerHeight * 0.8);
-    };
+    detect();
+    window.addEventListener('scroll', detect, { passive: true });
+    return () => window.removeEventListener('scroll', detect);
+  }, [detect]);
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const cls = [
+    styles.stickyDonate,
+    visible ? styles.visible : '',
+    variant === 'dark' ? styles.onDark : '',
+    variant === 'yellow' ? styles.onYellow : '',
+  ].filter(Boolean).join(' ');
 
   return (
     <a
+      ref={ref}
       href="https://donaronline.org"
       target="_blank"
       rel="noopener noreferrer"
-      className={`${styles.stickyDonate} ${visible ? styles.visible : ''}`}
+      className={cls}
       aria-label="Realizar una donación"
     >
       <svg

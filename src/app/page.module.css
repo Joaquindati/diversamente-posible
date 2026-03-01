@@ -112,14 +112,19 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  align-items: stretch;
+}
+
+.missionVisionValores > * {
+  height: 100%;
 }
 
 .mvCard {
   padding: 32px;
   border-radius: var(--border-radius);
-  min-height: 220px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .mvCard h3 {
@@ -161,26 +166,20 @@
 /* Valores */
 .valoresGrid {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 2px;
   flex-grow: 1;
 }
 
 .valorItem {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 8px 16px;
-  border-radius: 50px;
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
   font-weight: 600;
-  color: white;
-  font-size: 0.9rem;
-}
-
-/* Yellow card valor items contrast fix */
-.mvCardYellow .valorItem {
   color: var(--color-dark);
-  background: rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.15);
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
 
 /* ───── PROGRAMAS ───── */
@@ -390,6 +389,11 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
   margin-top: 48px;
+  align-items: stretch;
+}
+
+.momentosGrid > * {
+  height: 100%;
 }
 
 .momentoCard {
@@ -399,6 +403,19 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.momentoCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.momentoCard:hover .momentoLink {
+  text-decoration: underline;
 }
 
 .momentoImage {

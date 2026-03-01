@@ -63,9 +63,9 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.01em;
 }
 
-h1 { font-size: 3.75rem; }
-h2 { font-size: 2.65rem; }
-h3 { font-size: 1.85rem; }
+h1 { font-size: 4.2rem; }
+h2 { font-size: 3rem; }
+h3 { font-size: 2.1rem; }
 
 p {
   margin-bottom: 1rem;
@@ -166,9 +166,9 @@ p {
 
 /* Responsive */
 @media (max-width: 768px) {
-  h1 { font-size: 2.6rem; }
-  h2 { font-size: 2.1rem; }
-  h3 { font-size: 1.55rem; }
+  h1 { font-size: 2.9rem; }
+  h2 { font-size: 2.4rem; }
+  h3 { font-size: 1.75rem; }
 
   .section {
     padding: 60px 0;

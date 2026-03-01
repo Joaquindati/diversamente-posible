@@ -110,7 +110,7 @@ export default function Home() {
           </Reveal>
 
           <div className={styles.missionVisionValores}>
-            <Reveal direction="up" delay={0}>
+            <Reveal direction="up" delay={0} style={{ height: '100%' }}>
               <div className={`${styles.mvCard} ${styles.mvCardRed}`}>
                 <h3>Nuestra Misión</h3>
                 <p>
@@ -120,7 +120,7 @@ export default function Home() {
                 </p>
               </div>
             </Reveal>
-            <Reveal direction="up" delay={0.15}>
+            <Reveal direction="up" delay={0.15} style={{ height: '100%' }}>
               <div className={`${styles.mvCard} ${styles.mvCardGreen}`}>
                 <h3>Nuestra Visión</h3>
                 <p>
@@ -129,7 +129,7 @@ export default function Home() {
                 </p>
               </div>
             </Reveal>
-            <Reveal direction="up" delay={0.3}>
+            <Reveal direction="up" delay={0.3} style={{ height: '100%' }}>
               <div className={`${styles.mvCard} ${styles.mvCardYellow}`}>
                 <h3>Nuestros Valores</h3>
                 <div className={styles.valoresGrid}>
@@ -318,6 +318,212 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ───── CAMPAÑA ───── */}
+      <section className={styles.campanaSection} aria-labelledby="campana-heading">
+        <div className="container text-center">
+          <Reveal direction="up">
+            <h2 id="campana-heading" className={styles.campanaTitle}>
+              ¿Te imaginas llegar con 1000 Bicicletas y 1000 Sillas a todo el país?
+            </h2>
+          </Reveal>
+          <Reveal direction="up" delay={0.2}>
+            <p className={styles.campanaCta}>¿Te sumás?</p>
+            <div className={styles.campanaButtons}>
+              <a
+                href="https://donaronline.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`btn ${styles.btnCampana}`}
+              >
+                QUIERO SUMARME
+              </a>
+              <a
+                href="https://wa.me/5492246496999"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`btn ${styles.btnOutlineDark}`}
+              >
+                Hablar con el equipo
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───── MOMENTOS DESTACADOS ───── */}
+      <section className={styles.momentosSection} aria-labelledby="momentos-heading">
+        <div className="container">
+          <Reveal direction="up" className="text-center">
+            <h2 id="momentos-heading">
+              <ColoredTitle text="MOMENTOS DESTACADOS" />
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Notas de prensa, reconocimientos y eventos que marcaron nuestro camino.
+            </p>
+          </Reveal>
+
+          <div className={styles.momentosGrid}>
+            <Reveal direction="up" delay={0.1} style={{ height: '100%' }}>
+              <a href="#contacto" className={styles.momentoCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://picsum.photos/seed/premio-abanderados/400/200"
+                  alt="Premio Abanderados 2024 — imagen placeholder"
+                  className={styles.momentoImage}
+                />
+                <div className={styles.momentoContent}>
+                  <h3>Premio Abanderados 2024</h3>
+                  <p>
+                    Diversamente Posibles fue reconocida con el Premio Abanderados por su labor
+                    en la creación de espacios de encuentro y participación para personas con
+                    y sin discapacidad.
+                  </p>
+                  <span className={styles.momentoLink}>Leer más</span>
+                </div>
+              </a>
+            </Reveal>
+
+            <Reveal direction="up" delay={0.2} style={{ height: '100%' }}>
+              <a href="#contacto" className={styles.momentoCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://picsum.photos/seed/nota-medio/400/200"
+                  alt="Nota en medios — imagen placeholder"
+                  className={styles.momentoImage}
+                />
+                <div className={styles.momentoContent}>
+                  <h3>Nota en Medios</h3>
+                  <p>
+                    Nuestra historia fue destacada en medios nacionales, visibilizando el impacto
+                    de las actividades recreativas y deportivas basadas en el diseño universal.
+                  </p>
+                  <span className={styles.momentoLink}>Leer más</span>
+                </div>
+              </a>
+            </Reveal>
+
+            <Reveal direction="up" delay={0.3} style={{ height: '100%' }}>
+              <a href="#contacto" className={styles.momentoCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://picsum.photos/seed/proximo-momento/400/200"
+                  alt="Próximo momento destacado — imagen placeholder"
+                  className={styles.momentoImage}
+                />
+                <div className={styles.momentoContent}>
+                  <h3>Próximamente</h3>
+                  <p>
+                    Seguimos construyendo momentos que transforman. Este espacio se actualizará
+                    con nuevas notas y reconocimientos.
+                  </p>
+                  <span className={styles.momentoLink}>Leer más</span>
+                </div>
+              </a>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── INSCRIPCIÓN A EVENTOS (Próximamente) ───── */}
+      <section id="inscripcion" className={styles.proximamenteSection} aria-labelledby="inscripcion-heading">
+        <div className="container">
+          <Reveal direction="up" className="text-center">
+            <span className={styles.proximamenteBadge}>Próximamente</span>
+            <h2 id="inscripcion-heading">
+              <ColoredTitle text="INSCRIPCIÓN A EVENTOS" />
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Inscribite a nuestras actividades, maratones y jornadas deportivas.
+            </p>
+          </Reveal>
+
+          <div className={styles.inscripcionForm}>
+            <label htmlFor="inscripcion-nombre" className="sr-only">Nombre completo</label>
+            <input
+              id="inscripcion-nombre"
+              type="text"
+              placeholder="Nombre completo"
+              className={styles.formInput}
+              disabled
+              aria-disabled="true"
+            />
+            <label htmlFor="inscripcion-email" className="sr-only">Email</label>
+            <input
+              id="inscripcion-email"
+              type="email"
+              placeholder="Email"
+              className={styles.formInput}
+              disabled
+              aria-disabled="true"
+            />
+            <label htmlFor="inscripcion-evento" className="sr-only">Seleccionar evento</label>
+            <select id="inscripcion-evento" disabled aria-disabled="true">
+              <option value="">Seleccioná un evento</option>
+              <option value="maraton">Nuestra Maratón 2026</option>
+              <option value="surf">Jornada de Surf</option>
+              <option value="bici">Carrera en Bici</option>
+            </select>
+            <label htmlFor="inscripcion-comentarios" className="sr-only">Comentarios</label>
+            <textarea
+              id="inscripcion-comentarios"
+              placeholder="Comentarios (opcional)"
+              disabled
+              aria-disabled="true"
+            />
+            <button className="btn btn-primary" disabled aria-disabled="true" style={{ width: '100%' }}>
+              Inscribirme
+            </button>
+          </div>
+          <p className={styles.proximamenteNote}>
+            Esta sección es un ejemplo funcional. El formulario no envía datos aún.
+          </p>
+        </div>
+      </section>
+
+      {/* ───── TIENDA (Próximamente) ───── */}
+      <section id="tienda" className={`${styles.proximamenteSection} ${styles.proximamenteBg}`} aria-labelledby="tienda-heading">
+        <div className="container">
+          <Reveal direction="up" className="text-center">
+            <span className={styles.proximamenteBadge}>Próximamente</span>
+            <h2 id="tienda-heading">
+              <ColoredTitle text="NUESTRA TIENDA" />
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Merchandising oficial de Diversamente Posibles. Tu compra apoya directamente nuestros proyectos.
+            </p>
+          </Reveal>
+
+          <div className={styles.tiendaGrid}>
+            {[
+              { name: 'Remera Diversamente', price: '$15.000', img: 'https://picsum.photos/seed/remera-dp/400/200' },
+              { name: 'Taza Mundo Posible', price: '$8.000', img: 'https://picsum.photos/seed/taza-dp/400/200' },
+              { name: 'Stickers Pack', price: '$3.000', img: 'https://picsum.photos/seed/stickers-dp/400/200' },
+            ].map((product) => (
+              <Reveal key={product.name} direction="up">
+                <div className={styles.tiendaCard}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={product.img}
+                    alt={`${product.name} — imagen placeholder`}
+                    className={styles.tiendaImage}
+                  />
+                  <div className={styles.tiendaContent}>
+                    <h3>{product.name}</h3>
+                    <p className={styles.tiendaPrice}>{product.price}</p>
+                    <button className="btn btn-primary" disabled aria-disabled="true">
+                      Comprar
+                    </button>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <p className={styles.proximamenteNote}>
+            Esta sección es un ejemplo funcional. Los productos y precios son ficticios.
+          </p>
+        </div>
+      </section>
+
       {/* ───── CÓMO AYUDAR ───── */}
       <section id="ayudar" className={styles.ayudarSection} aria-labelledby="ayudar-heading">
         <div className="container text-center">
@@ -384,107 +590,6 @@ export default function Home() {
                 <a href="mailto:contacto@diversamenteposibles.org" className="btn btn-white">
                   Contactar
                 </a>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ───── CAMPAÑA ───── */}
-      <section className={styles.campanaSection} aria-labelledby="campana-heading">
-        <div className="container text-center">
-          <Reveal direction="up">
-            <h2 id="campana-heading" className={styles.campanaTitle}>
-              ¿Te imaginas llegar con 1000 Bicicletas y 1000 Sillas a todo el país?
-            </h2>
-          </Reveal>
-          <Reveal direction="up" delay={0.2}>
-            <p className={styles.campanaCta}>¿Te sumás?</p>
-            <div className={styles.campanaButtons}>
-              <a
-                href="https://donaronline.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`btn ${styles.btnCampana}`}
-              >
-                QUIERO SUMARME
-              </a>
-              <a
-                href="https://wa.me/5492246496999"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`btn ${styles.btnOutlineDark}`}
-              >
-                Hablar con el equipo
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ───── MOMENTOS DESTACADOS ───── */}
-      <section className={styles.momentosSection} aria-labelledby="momentos-heading">
-        <div className="container">
-          <Reveal direction="up" className="text-center">
-            <h2 id="momentos-heading">
-              <ColoredTitle text="MOMENTOS DESTACADOS" />
-            </h2>
-          </Reveal>
-
-          <div className={styles.momentosGrid}>
-            <Reveal direction="up" delay={0.1}>
-              <div className={styles.momentoCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://picsum.photos/seed/premio-abanderados/400/200"
-                  alt="Premio Abanderados 2024 — imagen placeholder"
-                  className={styles.momentoImage}
-                />
-                <div className={styles.momentoContent}>
-                  <h3>Premio Abanderados 2024</h3>
-                  <p>
-                    Diversamente Posibles fue reconocida con el Premio Abanderados por su labor
-                    en la creación de espacios de encuentro y participación para personas con
-                    y sin discapacidad.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal direction="up" delay={0.2}>
-              <div className={styles.momentoCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://picsum.photos/seed/nota-medio/400/200"
-                  alt="Nota en medios — imagen placeholder"
-                  className={styles.momentoImage}
-                />
-                <div className={styles.momentoContent}>
-                  <h3>Nota en Medios</h3>
-                  <p>
-                    Nuestra historia fue destacada en medios nacionales, visibilizando el impacto
-                    de las actividades recreativas y deportivas basadas en el diseño universal.
-                  </p>
-                  <a href="#contacto" className={styles.momentoLink}>Leer más</a>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal direction="up" delay={0.3}>
-              <div className={styles.momentoCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://picsum.photos/seed/proximo-momento/400/200"
-                  alt="Próximo momento destacado — imagen placeholder"
-                  className={styles.momentoImage}
-                />
-                <div className={styles.momentoContent}>
-                  <h3>Próximamente</h3>
-                  <p>
-                    Seguimos construyendo momentos que transforman. Este espacio se actualizará
-                    con nuevas notas y reconocimientos.
-                  </p>
-                </div>
               </div>
             </Reveal>
           </div>
@@ -625,106 +730,6 @@ export default function Home() {
               </form>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* ───── TIENDA (Próximamente) ───── */}
-      <section id="tienda" className={`${styles.proximamenteSection} ${styles.proximamenteBg}`} aria-labelledby="tienda-heading">
-        <div className="container">
-          <Reveal direction="up" className="text-center">
-            <span className={styles.proximamenteBadge}>Próximamente</span>
-            <h2 id="tienda-heading">
-              <ColoredTitle text="NUESTRA TIENDA" />
-            </h2>
-            <p className={styles.sectionSubtitle}>
-              Merchandising oficial de Diversamente Posibles. Tu compra apoya directamente nuestros proyectos.
-            </p>
-          </Reveal>
-
-          <div className={styles.tiendaGrid}>
-            {[
-              { name: 'Remera Diversamente', price: '$15.000', img: 'https://picsum.photos/seed/remera-dp/400/200' },
-              { name: 'Taza Mundo Posible', price: '$8.000', img: 'https://picsum.photos/seed/taza-dp/400/200' },
-              { name: 'Stickers Pack', price: '$3.000', img: 'https://picsum.photos/seed/stickers-dp/400/200' },
-            ].map((product) => (
-              <Reveal key={product.name} direction="up">
-                <div className={styles.tiendaCard}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={product.img}
-                    alt={`${product.name} — imagen placeholder`}
-                    className={styles.tiendaImage}
-                  />
-                  <div className={styles.tiendaContent}>
-                    <h3>{product.name}</h3>
-                    <p className={styles.tiendaPrice}>{product.price}</p>
-                    <button className="btn btn-primary" disabled aria-disabled="true">
-                      Comprar
-                    </button>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <p className={styles.proximamenteNote}>
-            Esta sección es un ejemplo funcional. Los productos y precios son ficticios.
-          </p>
-        </div>
-      </section>
-
-      {/* ───── INSCRIPCIÓN A EVENTOS (Próximamente) ───── */}
-      <section id="inscripcion" className={styles.proximamenteSection} aria-labelledby="inscripcion-heading">
-        <div className="container">
-          <Reveal direction="up" className="text-center">
-            <span className={styles.proximamenteBadge}>Próximamente</span>
-            <h2 id="inscripcion-heading">
-              <ColoredTitle text="INSCRIPCIÓN A EVENTOS" />
-            </h2>
-            <p className={styles.sectionSubtitle}>
-              Inscribite a nuestras actividades, maratones y jornadas deportivas.
-            </p>
-          </Reveal>
-
-          <div className={styles.inscripcionForm}>
-            <label htmlFor="inscripcion-nombre" className="sr-only">Nombre completo</label>
-            <input
-              id="inscripcion-nombre"
-              type="text"
-              placeholder="Nombre completo"
-              className={styles.formInput}
-              disabled
-              aria-disabled="true"
-            />
-            <label htmlFor="inscripcion-email" className="sr-only">Email</label>
-            <input
-              id="inscripcion-email"
-              type="email"
-              placeholder="Email"
-              className={styles.formInput}
-              disabled
-              aria-disabled="true"
-            />
-            <label htmlFor="inscripcion-evento" className="sr-only">Seleccionar evento</label>
-            <select id="inscripcion-evento" disabled aria-disabled="true">
-              <option value="">Seleccioná un evento</option>
-              <option value="maraton">Nuestra Maratón 2026</option>
-              <option value="surf">Jornada de Surf</option>
-              <option value="bici">Carrera en Bici</option>
-            </select>
-            <label htmlFor="inscripcion-comentarios" className="sr-only">Comentarios</label>
-            <textarea
-              id="inscripcion-comentarios"
-              placeholder="Comentarios (opcional)"
-              disabled
-              aria-disabled="true"
-            />
-            <button className="btn btn-primary" disabled aria-disabled="true" style={{ width: '100%' }}>
-              Inscribirme
-            </button>
-          </div>
-          <p className={styles.proximamenteNote}>
-            Esta sección es un ejemplo funcional. El formulario no envía datos aún.
-          </p>
         </div>
       </section>
 

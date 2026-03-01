@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, CSSProperties } from 'react';
 import styles from './EnfoqueSlider.module.css';
+
+const DOT_COLORS = ['#0072b9', '#e63138', '#f8b00e', '#009940', '#0072b9', '#e63138', '#f8b00e', '#009940', '#0072b9'];
 
 const SLIDES = [
   { text: <>Nos posicionamos dentro del <strong>modelo social de la discapacidad</strong>: no se trata de una condición individual a &ldquo;corregir&rdquo; o &ldquo;adaptar&rdquo;.</>, author: null },
@@ -65,6 +67,7 @@ export function EnfoqueSlider() {
       aria-label="Testimonios"
       onKeyDown={handleKeyDown}
       tabIndex={0}
+      style={{ borderLeftColor: DOT_COLORS[current % DOT_COLORS.length] }}
     >
       <button
         className={`${styles.arrow} ${styles.arrowLeft}`}
@@ -102,15 +105,23 @@ export function EnfoqueSlider() {
 
       <div className={styles.controls}>
         <div className={styles.dots}>
-          {SLIDES.map((_, i) => (
-            <button
-              key={i}
-              className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
-              onClick={() => advance(i)}
-              aria-label={`Testimonio ${i + 1}`}
-              type="button"
-            />
-          ))}
+          {SLIDES.map((_, i) => {
+            const color = DOT_COLORS[i % DOT_COLORS.length];
+            const isActive = i === current;
+            const dotStyle: CSSProperties = isActive
+              ? { borderColor: color, background: color }
+              : { borderColor: color };
+            return (
+              <button
+                key={i}
+                className={`${styles.dot} ${isActive ? styles.dotActive : ''}`}
+                style={dotStyle}
+                onClick={() => advance(i)}
+                aria-label={`Testimonio ${i + 1}`}
+                type="button"
+              />
+            );
+          })}
         </div>
         <button
           className={styles.pauseBtn}
