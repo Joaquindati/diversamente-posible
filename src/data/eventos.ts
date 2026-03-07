@@ -22,7 +22,7 @@ export const eventos: Evento[] = [
     slug: 'premio-abanderados-2024',
     title: 'Premio Abanderados 2024',
     date: 'Noviembre 2024',
-    coverImage: 'https://picsum.photos/seed/premio-abanderados/400/200',
+    coverImage: '/images/galeria-8.jpg',
     coverAlt: 'Premio Abanderados 2024',
     shortDescription:
       'Diversamente Posibles fue reconocida con el Premio Abanderados por su labor en la creación de espacios de encuentro y participación para personas con y sin discapacidad.',
@@ -42,7 +42,7 @@ export const eventos: Evento[] = [
     slug: 'nota-en-medios',
     title: 'Nota en Medios',
     date: 'Septiembre 2024',
-    coverImage: 'https://picsum.photos/seed/nota-medio/400/200',
+    coverImage: '/images/galeria-12.jpg',
     coverAlt: 'Nota en medios nacionales',
     shortDescription:
       'Nuestra historia fue destacada en medios nacionales, visibilizando el impacto de las actividades recreativas y deportivas basadas en el diseño universal.',
@@ -62,7 +62,7 @@ export const eventos: Evento[] = [
     slug: 'proximamente',
     title: 'Próximamente',
     date: '2025',
-    coverImage: 'https://picsum.photos/seed/proximo-momento/400/200',
+    coverImage: '/images/galeria-5.jpg',
     coverAlt: 'Próximo momento destacado',
     shortDescription:
       'Seguimos construyendo momentos que transforman. Este espacio se actualizará con nuevas notas y reconocimientos.',

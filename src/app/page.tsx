@@ -15,25 +15,23 @@ import { Lightbox } from '@/components/Lightbox';
 import { eventos, EventPhoto } from '@/data/eventos';
 import styles from './page.module.css';
 
-const galleryPhotos: EventPhoto[] = [
-  { src: 'https://picsum.photos/seed/sun-1/600/400', alt: 'Actividad comunitaria', width: 600, height: 400 },
-  { src: 'https://picsum.photos/seed/sun-2/600/400', alt: 'Jornada en la playa', width: 600, height: 400 },
-  { src: 'https://picsum.photos/seed/sun-3/600/400', alt: 'Bicicleteada inclusiva', width: 600, height: 400 },
-  { src: 'https://picsum.photos/seed/sun-4/600/400', alt: 'Taller de reciclaje', width: 600, height: 400 },
-  { src: 'https://picsum.photos/seed/sun-5/600/400', alt: 'Encuentro deportivo', width: 600, height: 400 },
-];
+const allPhotos: EventPhoto[] = Array.from({ length: 19 }, (_, i) => ({
+  src: `/images/galeria-${i + 1}.jpg`,
+  alt: `Actividad Diversamente Posibles ${i + 1}`,
+  width: 600,
+  height: 400,
+}));
 
-const circlePhotos: EventPhoto[] = [
-  { src: 'https://picsum.photos/seed/circle-1/600/600', alt: 'Momento inclusivo', width: 600, height: 600 },
-  { src: 'https://picsum.photos/seed/circle-2/600/600', alt: 'Jornada de surf', width: 600, height: 600 },
-  { src: 'https://picsum.photos/seed/circle-3/600/600', alt: 'Carrera en bici', width: 600, height: 600 },
-  { src: 'https://picsum.photos/seed/circle-4/600/600', alt: 'Equipo voluntario', width: 600, height: 600 },
-  { src: 'https://picsum.photos/seed/circle-5/600/600', alt: 'Encuentro comunitario', width: 600, height: 600 },
-  { src: 'https://picsum.photos/seed/circle-6/600/600', alt: 'Actividad recreativa', width: 600, height: 600 },
-  { src: 'https://picsum.photos/seed/circle-7/600/600', alt: 'Día en la playa', width: 600, height: 600 },
-  { src: 'https://picsum.photos/seed/circle-8/600/600', alt: 'Taller grupal', width: 600, height: 600 },
-  { src: 'https://picsum.photos/seed/circle-9/600/600', alt: 'Celebración', width: 600, height: 600 },
-];
+// Group photos into sets of 4 for each slide
+const gallerySlides: EventPhoto[][] = [];
+for (let i = 0; i < 9; i++) {
+  gallerySlides.push([
+    allPhotos[(i * 4) % allPhotos.length],
+    allPhotos[(i * 4 + 1) % allPhotos.length],
+    allPhotos[(i * 4 + 2) % allPhotos.length],
+    allPhotos[(i * 4 + 3) % allPhotos.length],
+  ]);
+}
 
 export default function Home() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -53,13 +51,13 @@ export default function Home() {
 
   const goPrev = useCallback(() => {
     setLightboxIndex(prev =>
-      prev !== null ? (prev - 1 + galleryPhotos.length) % galleryPhotos.length : null
+      prev !== null ? (prev - 1 + allPhotos.length) % allPhotos.length : null
     );
   }, []);
 
   const goNext = useCallback(() => {
     setLightboxIndex(prev =>
-      prev !== null ? (prev + 1) % galleryPhotos.length : null
+      prev !== null ? (prev + 1) % allPhotos.length : null
     );
   }, []);
   return (
@@ -162,8 +160,8 @@ export default function Home() {
             </Reveal>
             <Reveal direction="right" className={styles.nosotrosGallery}>
               <SunburstGallery
-                photos={galleryPhotos}
-                circlePhoto={circlePhotos[currentSlide % circlePhotos.length]}
+                photos={gallerySlides}
+                currentSlide={currentSlide}
                 onPhotoClick={openLightbox}
               />
             </Reveal>
@@ -331,8 +329,8 @@ export default function Home() {
             <Reveal direction="right" className={styles.programaVisual}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://picsum.photos/seed/reciclarte/400/300"
-                alt="Proyecto ReciclArte — imagen placeholder"
+                src="/images/reciclarte.jpg"
+                alt="Proyecto ReciclArte"
                 className={styles.programaImage}
               />
             </Reveal>
@@ -367,8 +365,8 @@ export default function Home() {
             <Reveal direction="left" className={styles.programaVisual}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://picsum.photos/seed/maraton-dp/400/300"
-                alt="Nuestra Maratón — imagen placeholder"
+                src="/images/maraton.jpg"
+                alt="Nuestra Maratón"
                 className={`${styles.programaImage} ${styles.programaImageRight}`}
               />
             </Reveal>
@@ -513,9 +511,9 @@ export default function Home() {
 
           <div className={styles.tiendaGrid}>
             {[
-              { name: 'Remera Diversamente', price: '$15.000', img: 'https://picsum.photos/seed/remera-dp/400/200' },
-              { name: 'Taza Mundo Posible', price: '$8.000', img: 'https://picsum.photos/seed/taza-dp/400/200' },
-              { name: 'Stickers Pack', price: '$3.000', img: 'https://picsum.photos/seed/stickers-dp/400/200' },
+              { name: 'Remera Diversamente', price: '$15.000', img: '/images/tienda-remera.jpg' },
+              { name: 'Banderas', price: '$8.000', img: '/images/tienda-banderas.jpg' },
+              { name: 'Stickers Pack', price: '$3.000', img: '/images/tienda-stickers.jpg' },
             ].map((product) => (
               <Reveal key={product.name} direction="up">
                 <div className={styles.tiendaCard}>
@@ -756,7 +754,7 @@ export default function Home() {
 
       {lightboxIndex !== null && (
         <Lightbox
-          photos={galleryPhotos}
+          photos={allPhotos}
           currentIndex={lightboxIndex}
           onClose={closeLightbox}
           onPrev={goPrev}

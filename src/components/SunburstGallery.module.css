@@ -1,4 +1,4 @@
-/* ── Container: 2x2 grid + absolute circle ── */
+/* ── Container: 2x2 grid ── */
 .gallery {
   position: relative;
   display: grid;
@@ -17,8 +17,15 @@
   padding: 0;
   cursor: pointer;
   background: var(--color-light-gray);
-  transition: filter 0.25s ease;
   border-radius: 16px;
+  transition: filter 0.25s ease, opacity 0.35s ease, transform 0.35s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cellFading {
+  opacity: 0;
+  transform: scale(0.96);
 }
 
 .cell:hover {
@@ -51,36 +58,6 @@
   grid-row: 2;
 }
 
-/* ── Circle (overlapping center) ── */
-.circle {
-  position: absolute;
-  /* Center the circle in the grid */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 55%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 5px solid white;
-  cursor: pointer;
-  background: var(--color-light-gray);
-  z-index: 2;
-  padding: 0;
-  transition: filter 0.25s ease, transform 0.25s ease;
-}
-
-.circle:hover {
-  filter: brightness(1.12);
-  transform: translate(-50%, -50%) scale(1.03);
-}
-
-.circle:focus-visible {
-  outline: 3px solid #005fcc;
-  outline-offset: 2px;
-  z-index: 4;
-}
-
 /* ── Shared image style ── */
 .image {
   position: absolute;
@@ -90,35 +67,10 @@
   object-fit: cover;
 }
 
-.circleImage {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  animation: circleFadeIn 0.5s ease;
-}
-
-@keyframes circleFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(1.08);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .gallery {
     max-width: 400px;
     margin: 0 auto;
-  }
-
-  .circle {
-    width: 50%;
-    border-width: 4px;
   }
 }

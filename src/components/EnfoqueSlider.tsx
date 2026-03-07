@@ -130,11 +130,10 @@ export function EnfoqueSlider({ onSlideChange }: EnfoqueSliderProps) {
       <div className={styles.controls}>
         <div className={styles.dots}>
           {SLIDES.map((_, i) => {
-            const color = DOT_COLORS[i % DOT_COLORS.length];
             const isActive = i === current;
             const dotStyle: CSSProperties = isActive
-              ? { borderColor: color, background: color }
-              : { borderColor: color };
+              ? { borderColor: pauseColor, background: pauseColor }
+              : { borderColor: pauseColor };
             return (
               <button
                 key={i}
