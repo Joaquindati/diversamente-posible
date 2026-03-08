@@ -47,9 +47,11 @@
   letter-spacing: 0.02em;
 }
 
-.navLinks a:hover {
-  color: var(--color-blue);
-}
+.navLinks li:nth-child(1) a:hover { color: var(--color-blue); }
+.navLinks li:nth-child(2) a:hover { color: var(--color-red); }
+.navLinks li:nth-child(3) a:hover { color: var(--color-yellow); }
+.navLinks li:nth-child(4) a:hover { color: var(--color-green); }
+.navLinks li:nth-child(5) a:hover { color: var(--color-blue); }
 
 /* ── Hamburger button ── */
 .hamburger {
@@ -149,10 +151,11 @@
     border-bottom: none;
   }
 
-  .navLinks a:hover {
-    background: rgba(0, 114, 185, 0.06);
-    color: var(--color-blue);
-  }
+  .navLinks li:nth-child(1) a:hover { background: rgba(0, 114, 185, 0.06); color: var(--color-blue); }
+  .navLinks li:nth-child(2) a:hover { background: rgba(230, 49, 56, 0.06); color: var(--color-red); }
+  .navLinks li:nth-child(3) a:hover { background: rgba(248, 176, 14, 0.06); color: var(--color-yellow); }
+  .navLinks li:nth-child(4) a:hover { background: rgba(0, 153, 64, 0.06); color: var(--color-green); }
+  .navLinks li:nth-child(5) a:hover { background: rgba(0, 114, 185, 0.06); color: var(--color-blue); }
 }
 
 @keyframes slideDown {

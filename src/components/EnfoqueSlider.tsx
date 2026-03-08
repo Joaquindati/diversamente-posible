@@ -51,7 +51,7 @@ export function EnfoqueSlider({ onSlideChange }: EnfoqueSliderProps) {
         return next;
       });
       setFading(false);
-    }, 350);
+    }, 500);
   }, [onSlideChange]);
 
   const goNext = useCallback(() => {

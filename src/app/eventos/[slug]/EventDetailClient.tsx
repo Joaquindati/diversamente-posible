@@ -65,6 +65,17 @@ export function EventDetailClient({ evento }: Props) {
           <Reveal direction="up" delay={0.4}>
             <p className={styles.description}>{evento.longDescription}</p>
           </Reveal>
+
+          <Reveal direction="up" delay={0.5}>
+            <div className={styles.heroImageWrapper}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={evento.coverImage}
+                alt={evento.coverAlt}
+                className={styles.heroImage}
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 

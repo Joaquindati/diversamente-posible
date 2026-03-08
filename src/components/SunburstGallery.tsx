@@ -17,7 +17,7 @@ const CELLS = [
   { className: styles.bottomRight },
 ];
 
-const STAGGER_DELAY = 180; // ms between each photo transition
+const STAGGER_DELAY = 150; // ms between each photo transition
 
 export function SunburstGallery({ photos, currentSlide, onPhotoClick }: SunburstGalleryProps) {
   // Each cell tracks its own displayed photo independently
@@ -57,7 +57,7 @@ export function SunburstGallery({ photos, currentSlide, onPhotoClick }: Sunburst
           next[i] = false;
           return next;
         });
-      }, delay + 250);
+      }, delay + 400);
 
       timersRef.current.push(tOut, tIn);
     }
